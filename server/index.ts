@@ -26,6 +26,10 @@ const wsServer = new WebSocketServer({
     autoAcceptConnections: true
 });
 
+function originIsAllowed(origin: string) {
+  // put logic here to detect whether the specified origin is allowed.
+  return true;
+}
 
 wsServer.on('connect', (connection) => {
     connection.on('message', (data) => {
