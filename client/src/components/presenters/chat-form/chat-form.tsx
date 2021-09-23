@@ -7,10 +7,21 @@ export interface ChatFormProps {
 export const ChatForm: FC<ChatFormProps> = (props) => {
     const [message, setMessage] = useState<string>("");
     
+    const handleOnSubmit = () => {
+        props.onSendMessage(message);
+        setMessage("");
+    }
+
+    const handelOnFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+    }
+
     return (
         <div>
-            <input value={message} onInput={(event) => setMessage(event.currentTarget.value)} type="text" />
-            <button onClick={() => props.onSendMessage(message)} type="submit">Send</button>
+            <form onSubmit={(event) => handelOnFormSubmit(event)}>
+                <input value={message} onInput={(event) => setMessage(event.currentTarget.value)} type="text" />
+                <button type="submit" onClick={() => { handleOnSubmit() }}>Send</button>
+            </form>
         </div>
     )
 }
