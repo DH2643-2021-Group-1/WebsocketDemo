@@ -8,13 +8,7 @@ export const Chat: FC = (props) => {
     const [chatHistory, setChatHistory] = useState<string[]>([])
     
     useEffect(() => {
-        const socket = new WebSocket('ws://localhost:8080');
-        socket.addEventListener('open', (event) => {
-            setActiveSocket(socket);
-        });
-        socket.addEventListener('message', (event) => {
-            updateChatHistory(event.data);
-        });
+        /** TODO: Connect to websocket */
     }, [])
     
     const updateChatHistory = (newMessage: string) => {
@@ -23,7 +17,7 @@ export const Chat: FC = (props) => {
 
     const sendMessage = (messageToSend: string) => {
         updateChatHistory(messageToSend);
-        activeSocket?.send(messageToSend);
+        /** TODO: Send message to server */
     }
 
     return (
